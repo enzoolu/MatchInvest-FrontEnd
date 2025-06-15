@@ -9,10 +9,10 @@ const Stack = createNativeStackNavigator();
 export function Routes() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="AccountType" component={AccountType} />
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="AccountType" component={AccountType} />
     </Stack.Navigator>
   );
 }

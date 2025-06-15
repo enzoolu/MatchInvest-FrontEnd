@@ -12,7 +12,7 @@ export default function AccountType() {
       <Header subtitle="Selecione o tipo de conta" />
       <View style={styles.screenContainer}>
         <Text style={styles.styledText}>
-          Escolha entre uma conta de Investidor ou Trader.
+          Escolha seu <Text style={styles.styledTextOrange}>perfil!</Text>
         </Text>
         <Button>
           <ButtonText>Investidor</ButtonText>

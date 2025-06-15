@@ -19,4 +19,12 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 50,
   },
+
+  styledTextOrange: {
+    fontSize: 16,
+    color: "orange",
+    marginTop: 12,
+    textAlign: "center",
+    marginBottom: 50,
+  },
 });
