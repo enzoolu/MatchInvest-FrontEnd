@@ -3,24 +3,29 @@ import CustomButton from "../CustomButton";
 import { styles } from "./styles";
 import { CardProps } from "./types";
 
-export const Card = ({ imgPath, name, description }: CardProps) => {
+export const Card = ({ imgPath, name, description, onClick }: CardProps) => {
   return (
     <View style={styles.cardContainer}>
       <Image
-        source={require(`../../../assets/images/income-amico.png`)}
-        style={styles.image}
+        source={require("../../../assets/images/income-amico.png")}
+        style={styles.avatar}
       />
 
-      <Text style={styles.cardName}>{name}</Text>
-      <Text style={styles.cardDescription}>{description}</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.description}>{description}</Text>
+      </View>
 
-      <CustomButton
-        height="25px"
-        width="95px"
-        fontSize="12px"
-        onClick={() => console.log("teste")}
-        title="Saiba Mais"
-      />
+      <View style={styles.rightContainer}>
+        <Text style={styles.time}>Há 20 horas</Text>
+        <CustomButton
+          height="25px"
+          width="95px"
+          fontSize="12px"
+          onClick={onClick}
+          title="Saiba Mais"
+        />
+      </View>
     </View>
   );
 };

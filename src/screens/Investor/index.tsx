@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, TextInput, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
@@ -8,11 +8,14 @@ import CustomButton from "../../components/CustomButton";
 import { getToken } from "../../AsyncStorage";
 
 export default function Investor() {
+  const navigation = useNavigation();
   const [selected, setSelected] = useState("");
   const [capital, setCapital] = useState("");
   const [token, setToken] = useState("");
 
-  const handleButtonClick = () => {};
+  const handleButtonClick = () => {
+    navigation.navigate("PickAssessor" as never);
+  };
 
   useEffect(() => {
     getToken().then((res) => {

@@ -1,6 +1,6 @@
 export interface CustomButtonProps {
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
   height?: string;
   width?: string;
   fontSize?: string;

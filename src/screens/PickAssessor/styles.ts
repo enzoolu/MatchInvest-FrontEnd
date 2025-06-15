@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#2C2C2E",
     height: "100%",
+    overflow: "scroll",
   },
   screenContainer: {
     width: "100%",

@@ -2,32 +2,45 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   cardContainer: {
-    display: "flex",
     flexDirection: "row",
+    alignItems: "center",
     backgroundColor: "#2C2C2E",
-    height: 250,
-    width: 200,
+    padding: 10,
+    borderRadius: 10,
+    width: "100%",
+    maxWidth: 320,
+    height: 90,
+    justifyContent: "space-between",
   },
-  image: {
+  avatar: {
     width: 48,
     height: 48,
     borderRadius: 24,
+    marginRight: 10,
   },
-  cardName: {
-    fontSize: 24,
+  textContainer: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  name: {
+    fontSize: 18,
     color: "#FFD500",
-    fontWeight: "semibold",
-    textAlign: "center",
-    marginBottom: 10,
+    fontStyle: "italic",
+    fontWeight: "600",
   },
-  cardDescription: {
-    fontSize: 16,
+  description: {
+    fontSize: 14,
     color: "#FFD500",
-    marginTop: 12,
-    textAlign: "left",
+    marginTop: 4,
   },
-  customButton: {
-    width: 100,
-    height: 40,
+  rightContainer: {
+    alignItems: "flex-end",
+    justifyContent: "space-between",
+    height: "100%",
+    paddingVertical: 8,
+  },
+  time: {
+    fontSize: 10,
+    color: "#A3A3A3",
   },
 });
