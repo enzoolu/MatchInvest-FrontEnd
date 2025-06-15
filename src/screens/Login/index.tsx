@@ -13,6 +13,7 @@ import {
 import CustomButton from "../../components/CustomButton";
 import { Header } from "../../components/Header";
 import axios from "axios";
+import { saveToken } from "../../AsyncStorage";
 
 export default function Login() {
   const navigation = useNavigation();
@@ -58,6 +59,8 @@ export default function Login() {
 
   useEffect(() => {
     if (token) {
+      saveToken(token);
+
       navigation.navigate({ name: "AccountType", params: { token } } as never);
     }
   }, [token]);

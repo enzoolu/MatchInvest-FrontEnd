@@ -1,7 +1,9 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
+import { CustomButtonTextStyleProps, CustomButtonStyleProps } from "./types";
 
-export const ButtonContainer = styled.TouchableOpacity`
-  width: 70%;
+export const ButtonContainer = styled.TouchableOpacity<CustomButtonStyleProps>`
+  width: ${({ width }) => width || "70%"};
+  height: ${({ height }) => height || "auto"};
   padding: 15px;
   border-radius: 30px;
   background-color: #c28800;
@@ -11,8 +13,8 @@ export const ButtonContainer = styled.TouchableOpacity`
   margin-top: 10px;
 `;
 
-export const ButtonText = styled.Text`
+export const ButtonText = styled.Text<CustomButtonTextStyleProps>`
   color: white;
-  font-size: 16px;
+  font-size: ${({ fontSize }) => fontSize || "16px"};
   font-weight: bold;
 `;
