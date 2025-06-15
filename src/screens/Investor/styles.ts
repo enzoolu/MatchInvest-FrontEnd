@@ -2,28 +2,32 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   backgroundView: {
-    display: "flex",
-    alignItems: "center",
     backgroundColor: "#2C2C2E",
     height: "100%",
   },
   screenContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
     width: "100%",
+    height: "60%",
     paddingHorizontal: 35,
   },
+  capitalContainer: {
+    marginTop: 30,
+    gap: 30,
+  },
   styledText: {
-    fontSize: 16,
+    fontSize: 24,
     color: "#A5ACAF",
     marginTop: 12,
-    textAlign: "center",
-    marginBottom: 50,
+    textAlign: "left",
   },
   styledTextOrange: {
-    fontSize: 16,
+    fontSize: 24,
     color: "orange",
     marginTop: 12,
     textAlign: "center",
-    marginBottom: 50,
   },
   styledInput: {
     backgroundColor: "#4A4A4C",
@@ -37,5 +41,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 3,
     marginBottom: 20,
   },
-  styledSelect: {},
+  selectContainer: {
+    marginBottom: 20,
+  },
 });

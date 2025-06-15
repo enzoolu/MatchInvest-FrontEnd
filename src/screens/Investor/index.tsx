@@ -6,11 +6,12 @@ import CustomSelect from "../../components/Select";
 import CustomButton from "../../components/CustomButton";
 
 export default function Investor() {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<string | null>(null);
+  const [capital, setCapital] = useState<string>("");
 
   const handleButtonClick = () => {
-    // Handle button click logic here
-    console.log("Button clicked with selected value:", selected);
+    console.log("Capital disponível:", capital);
+    console.log("Perfil de risco selecionado:", selected);
   };
 
   return (
@@ -18,21 +19,37 @@ export default function Investor() {
       <Header />
 
       <View style={styles.screenContainer}>
-        <Text style={styles.styledText}>
-          <Text style={styles.styledTextOrange}>Capital</Text> disponível
-        </Text>
+        <View style={styles.capitalContainer}>
+          <Text style={styles.styledText}>
+            <Text style={styles.styledTextOrange}>Capital</Text> disponível
+          </Text>
 
-        <TextInput style={styles.styledInput} placeholder="Insira um valor" />
+          <TextInput
+            style={styles.styledInput}
+            placeholder="Insira um valor"
+            placeholderTextColor="#A5ACAF"
+            keyboardType="numeric"
+            value={capital}
+            onChangeText={setCapital}
+          />
+        </View>
 
-        <CustomSelect
-          items={[
-            { label: "Item A", value: "a" },
-            { label: "Item B", value: "b" },
-          ]}
-          placeholder={{ label: "Escolha algo...", value: null }}
-          onValueChange={setSelected}
-          value={selected}
-        />
+        <View style={styles.capitalContainer}>
+          <Text style={styles.styledText}>
+            <Text style={styles.styledTextOrange}>Perfil</Text> de risco
+          </Text>
+
+          <CustomSelect
+            label="Perfil de Risco"
+            items={[
+              { label: "Baixo", value: "baixo" },
+              { label: "Médio", value: "medio" },
+              { label: "Alto", value: "alto" },
+            ]}
+            onValueChange={setSelected}
+            value={selected}
+          />
+        </View>
 
         <CustomButton title="Criar perfil" onClick={handleButtonClick} />
       </View>
