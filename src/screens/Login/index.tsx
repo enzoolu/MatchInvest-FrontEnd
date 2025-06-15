@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Alert } from "react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
@@ -12,29 +12,55 @@ import {
 } from "./styles";
 import CustomButton from "../../components/CustomButton";
 import { Header } from "../../components/Header";
+import axios from "axios";
 
 export default function Login() {
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState("");
+  const endpointBase = "http://localhost:8080/api/v1";
+
+  const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
 
   useFocusEffect(
     useCallback(() => {
-      setEmail("");
+      setUser("");
       setPassword("");
     }, [])
   );
 
+  const loginAccount = async (user: string, password: string) => {
+    try {
+      await axios
+        .post(`${endpointBase}/auth/login`, {
+          username: user,
+          password: password,
+          rememberMe: true,
+        })
+        .then((res) => {
+          return setToken(res.data.token);
+        });
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      Alert.alert("Erro", "Usuário ou senha inválidos");
+    }
+  };
+
   const handleLogin = () => {
-    if (!email || !password) {
+    if (!user || !password) {
       Alert.alert("Erro", "Preencha todos os campos");
-      return navigation.navigate("AccountType" as never);
+      return;
     }
 
-    Alert.alert("Sucesso", "Login realizado com sucesso!");
-    navigation.navigate("Welcome" as never);
+    loginAccount(user, password);
   };
+
+  useEffect(() => {
+    if (token) {
+      navigation.navigate({ name: "AccountType", params: { token } } as never);
+    }
+  }, [token]);
 
   return (
     <Container>
@@ -44,10 +70,10 @@ export default function Login() {
 
       <FormArea>
         <Input
-          placeholder="Email"
+          placeholder="Usuario"
           placeholderTextColor="#A5ACAF"
-          value={email}
-          onChangeText={setEmail}
+          value={user}
+          onChangeText={setUser}
           autoCorrect={false}
           autoCapitalize="none"
           autoComplete="off"
