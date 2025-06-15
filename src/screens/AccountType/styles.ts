@@ -13,18 +13,18 @@ export const styles = StyleSheet.create({
   },
 
   styledText: {
-    fontSize: 16,
+    fontSize: 24,
     color: "#A5ACAF",
-    marginTop: 12,
+    marginTop: 100,
     textAlign: "center",
-    marginBottom: 50,
+    marginBottom: 120,
   },
 
   styledTextOrange: {
-    fontSize: 16,
+    fontSize: 24,
     color: "orange",
-    marginTop: 12,
+    marginTop: 100,
     textAlign: "center",
-    marginBottom: 50,
+    marginBottom: 120,
   },
 });
