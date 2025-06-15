@@ -1,25 +1,34 @@
-import { useNavigation } from '@react-navigation/native';
-import { Container, Title, SubTitle, ButtonsArea } from './styles';
-import CustomButton from '../../components/CustomButton';
+import React from 'react';
+import {
+  Container,
+  Header,
+  Title,
+  SubTitle,
+  Button,
+  ButtonText,
+  ButtonRegister,
+  ButtonRegisterText,
+  Content,
+} from './styles';
 
-export default function Welcome() {
-  const navigation = useNavigation();
-
+export default function Welcome({ navigation }: any) {
   return (
     <Container>
-      <SubTitle>Bem-vindo ao</SubTitle>
-      <Title>MatchInvest</Title>
+      <Header>
+        <SubTitle>seja bem vindo ao</SubTitle>
+        <Title>MatchInvest</Title>
+        <SubTitle>Registre-se para começar sua jornada de investimentos!</SubTitle>
+      </Header>
 
-      <ButtonsArea>
-        <CustomButton
-          title="Login"
-          onClick={() => navigation.navigate('Login' as never)}
-        />
-        <CustomButton
-          title="Registrar"
-          onClick={() => navigation.navigate('Register' as never)}
-        />
-      </ButtonsArea>
+      <Content>
+        <Button onPress={() => navigation.navigate('Login')}>
+          <ButtonText>LogIn</ButtonText>
+        </Button>
+
+        <ButtonRegister onPress={() => navigation.navigate('Register')}>
+          <ButtonRegisterText>Registrar</ButtonRegisterText>
+        </ButtonRegister>
+      </Content>
     </Container>
   );
 }
