@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #1a1a1a;
+  background-color: #2C2C2E;
 `;
 
 export const Content = styled.View`
@@ -15,10 +15,10 @@ export const FormArea = styled.View`
 `;
 
 export const SubTitle = styled.Text`
-  font-size: 14px;
-  color: white;
+  font-size: 20px;
+  color: #A5ACAF;
   text-align: center;
-  margin: 25px 0;
+  margin-bottom: 50px;
 `;
 
 export const Input = styled.TextInput`
