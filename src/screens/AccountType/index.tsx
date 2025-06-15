@@ -18,7 +18,7 @@ export default function AccountType() {
           <ButtonText>Investidor</ButtonText>
         </Button>
         <Button>
-          <ButtonText>Trader</ButtonText>
+          <ButtonText>Assessor</ButtonText>
         </Button>
       </View>
     </View>
