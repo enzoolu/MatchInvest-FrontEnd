@@ -12,6 +12,8 @@ export const Header = styled.View`
   border-bottom-right-radius: 20px;
   align-items: center;
   justify-content: center;
+  border-bottom-width: 2px;
+  border-bottom-color: #f1c40f;
 `;
 
 export const Title = styled.Text`
@@ -59,13 +61,13 @@ export const ButtonText = styled.Text`
 export const ButtonRegister = styled.TouchableOpacity`
   width: 100%;
   padding: 15px;
-  background-color: #f1c40f;
+  background-color: #C28800;
   border-radius: 8px;
   align-items: center;
 `;
 
 export const ButtonRegisterText = styled.Text`
-  color: #1a1a1a;
+  color:rgb(255, 255, 255);
   font-size: 16px;
   font-weight: bold;
 `;
