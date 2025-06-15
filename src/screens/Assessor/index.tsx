@@ -2,16 +2,21 @@ import { useState } from "react";
 import { ScrollView, Text, TextInput, View } from "react-native";
 import { styles } from "./styles";
 import { Header } from "../../components/Header";
+import { useNavigation } from '@react-navigation/native';
 import CustomSelect from "../../components/Select";
 import CustomButton from "../../components/CustomButton";
 
 export default function Assessor() {
+  const navigation = useNavigation(); // 👈 Faltava isso!
+
   const [certification, setCertification] = useState<string | null>(null);
   const [specialty, setSpecialty] = useState<string | null>(null);
   const [hourValue, setHourValue] = useState<string>("");
   const [bio, setBio] = useState<string>("");
 
   const handleButtonClick = () => {
+    navigation.navigate("AssessorDetails" as never);
+
     console.log("Certificação:", certification);
     console.log("Especialidade:", specialty);
     console.log("Valor por hora:", hourValue);

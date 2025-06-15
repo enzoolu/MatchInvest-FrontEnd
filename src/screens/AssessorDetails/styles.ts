@@ -1,0 +1,84 @@
+import { StyleSheet } from "react-native";
+
+export const styles = StyleSheet.create({
+  backgroundView: {
+    backgroundColor: "#2C2C2E",
+    height: "100%",
+    flex: 1,
+    justifyContent: "space-between",
+  },
+  screenContainer: {
+    paddingHorizontal: 25,
+    gap: 12,
+    flexGrow: 1,
+  },
+  headerContainer: {
+    display: "flex",
+    justifyContent: "center",
+    paddingVertical: 70,
+  },
+  title: {
+    color: "#FFD500",
+    fontSize: 40,
+    textAlign: "center",
+  },
+  profileContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 30,
+  },
+  avatar: {
+    width: 68,
+    height: 68,
+    borderRadius: 34,
+    backgroundColor: "#ddd",
+  },
+  name: {
+    color: "#C28800",
+    fontSize: 24,
+    fontWeight: "600",
+  },
+  CapitalContainer: {
+    gap: 10,
+    marginTop: 25,
+  },
+  RiscoContainer: {
+    gap: 10,
+    marginTop: 25,
+  },
+  sectionTitle: {
+    color: "#C28800",
+    fontSize: 24,
+    fontStyle: "italic",
+  },
+  bio: {
+    color: "#A5ACAF",
+    fontSize: 12,
+  },
+  msgContainer: {
+    gap: 20,
+    marginTop: 50,
+  },
+  input: {
+    backgroundColor: "#4A4A4C",
+    height: 150,
+    borderRadius: 10,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    color: "#A5ACAF",
+    shadowColor: "#171717",
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    textAlignVertical: "top",
+  },
+  footerContainer: {
+    paddingVertical: 20,
+    backgroundColor: "#2C2C2E",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    borderTopWidth: 1,
+    borderTopColor: "#444",
+  },
+});

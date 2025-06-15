@@ -1,17 +1,22 @@
 import { useState } from "react";
 import { Text, TextInput, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
 import { Header } from "../../components/Header";
 import CustomSelect from "../../components/Select";
 import CustomButton from "../../components/CustomButton";
 
 export default function Investor() {
+  const navigation = useNavigation();
+
   const [selected, setSelected] = useState<string | null>(null);
   const [capital, setCapital] = useState<string>("");
 
   const handleButtonClick = () => {
     console.log("Capital disponível:", capital);
     console.log("Perfil de risco selecionado:", selected);
+
+    navigation.navigate("InvestorDetails" as never);
   };
 
   return (
