@@ -8,11 +8,10 @@ import Register from "./src/screens/Register";
 import Login from "./src/screens/Login";
 import AccountType from "./src/screens/AccountType";
 import Investor from "./src/screens/Investor";
-import Assessor from './src/screens/Assessor';
 import InvestorDetails from "./src/screens/InvestorDetails";
 import AssessorDetails from "./src/screens/AssessorDetails";
-
-
+import PickAssessor from "./src/screens/PickAssessor";
+import Assessor from "./src/screens/Assessor";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +28,7 @@ export default function App() {
           <Stack.Screen name="Assessor" component={Assessor} />
           <Stack.Screen name="InvestorDetails" component={InvestorDetails} />
           <Stack.Screen name="AssessorDetails" component={AssessorDetails} />
+          <Stack.Screen name="PickAssessor" component={PickAssessor} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
