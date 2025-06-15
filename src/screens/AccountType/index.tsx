@@ -7,6 +7,14 @@ import { Button, ButtonText } from "../Welcome/styles";
 export default function AccountType() {
   const navigation = useNavigation();
 
+  const handleSelect = (profile: 'INVESTIDOR' | 'ASSESSOR') => {
+    if (profile === 'INVESTIDOR') {
+      navigation.navigate('Investor' as never);
+    } else if (profile === 'ASSESSOR') {
+      navigation.navigate('Assessor' as never);
+    }
+  };
+
   return (
     <View style={styles.backgroundView}>
       <Header />
@@ -14,10 +22,10 @@ export default function AccountType() {
         <Text style={styles.styledText}>
           Escolha seu <Text style={styles.styledTextOrange}>perfil!</Text>
         </Text>
-        <Button onPress={() => navigation.navigate("Investor" as never)}>
+        <Button onPress={() => handleSelect('INVESTIDOR')}>
           <ButtonText>Investidor</ButtonText>
         </Button>
-        <Button>
+        <Button onPress={() => handleSelect('ASSESSOR')}>
           <ButtonText>Assessor</ButtonText>
         </Button>
       </View>
