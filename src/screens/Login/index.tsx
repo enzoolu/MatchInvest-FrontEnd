@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from 'react';
-import { Alert } from 'react-native';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import React, { useState, useCallback } from "react";
+import { Alert } from "react-native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
   Container,
   FormArea,
@@ -9,31 +9,31 @@ import {
   LinkArea,
   TextLink,
   TextNormal,
-} from './styles';
-import CustomButton from '../../components/CustomButton';
-import { Header } from '../../components/Header';
+} from "./styles";
+import CustomButton from "../../components/CustomButton";
+import { Header } from "../../components/Header";
 
 export default function Login() {
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useFocusEffect(
     useCallback(() => {
-      setEmail('');
-      setPassword('');
+      setEmail("");
+      setPassword("");
     }, [])
   );
 
   const handleLogin = () => {
     if (!email || !password) {
-      Alert.alert('Erro', 'Preencha todos os campos');
-      return;
+      Alert.alert("Erro", "Preencha todos os campos");
+      return navigation.navigate("AccountType" as never);
     }
 
-    Alert.alert('Sucesso', 'Login realizado com sucesso!');
-    navigation.navigate('Welcome' as never);
+    Alert.alert("Sucesso", "Login realizado com sucesso!");
+    navigation.navigate("Welcome" as never);
   };
 
   return (
@@ -69,7 +69,7 @@ export default function Login() {
 
         <LinkArea>
           <TextNormal>Não tem uma conta? </TextNormal>
-          <TextLink onPress={() => navigation.navigate('Register' as never)}>
+          <TextLink onPress={() => navigation.navigate("Register" as never)}>
             Cadastre-se
           </TextLink>
         </LinkArea>
