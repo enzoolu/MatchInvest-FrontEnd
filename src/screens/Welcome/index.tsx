@@ -4,6 +4,7 @@ import {
   Header,
   Title,
   SubTitle,
+  SubTitle2,
   Button,
   ButtonText,
   ButtonRegister,
@@ -17,7 +18,7 @@ export default function Welcome({ navigation }: any) {
       <Header>
         <SubTitle>seja bem vindo ao</SubTitle>
         <Title>MatchInvest</Title>
-        <SubTitle>Registre-se para começar sua jornada de investimentos!</SubTitle>
+        <SubTitle2>Registre-se para começar sua jornada de investimentos!</SubTitle2>
       </Header>
 
       <Content>

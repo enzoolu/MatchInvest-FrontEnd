@@ -2,12 +2,12 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #1a1a1a;
+  background-color: #2C2C2E;
 `;
 
 export const Header = styled.View`
-  background-color: #333333;
-  padding: 50px 20px 30px 20px;
+  background-color: #3A3A3C;
+  padding: 50px 20px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   align-items: center;
@@ -15,15 +15,22 @@ export const Header = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: 28px;
-  color: #f1c40f;
+  font-size: 40px;
+  color: #FFD500;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 `;
 
 export const SubTitle = styled.Text`
-  font-size: 14px;
-  color: #fff;
+  font-size: 20px;
+  color: #A5ACAF;
+  text-align: center;
+  margin-bottom: 10px;
+`;
+
+export const SubTitle2 = styled.Text`
+  font-size: 12px;
+  color: #A5ACAF;
   text-align: center;
   margin-bottom: 10px;
 `;
