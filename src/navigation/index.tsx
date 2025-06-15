@@ -3,6 +3,7 @@ import Welcome from "../screens/Welcome";
 import Register from "../screens/Register";
 import Login from "../screens/Login";
 import AccountType from "../screens/AccountType";
+import Investor from "../screens/Investor";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,6 +14,7 @@ export function Routes() {
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="AccountType" component={AccountType} />
+      <Stack.Screen name="Investor" component={Investor} />
     </Stack.Navigator>
   );
 }

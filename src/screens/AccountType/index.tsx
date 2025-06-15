@@ -9,12 +9,12 @@ export default function AccountType() {
 
   return (
     <View style={styles.backgroundView}>
-      <Header subtitle="Selecione o tipo de conta" />
+      <Header />
       <View style={styles.screenContainer}>
         <Text style={styles.styledText}>
           Escolha seu <Text style={styles.styledTextOrange}>perfil!</Text>
         </Text>
-        <Button>
+        <Button onPress={() => navigation.navigate("Investor" as never)}>
           <ButtonText>Investidor</ButtonText>
         </Button>
         <Button>
