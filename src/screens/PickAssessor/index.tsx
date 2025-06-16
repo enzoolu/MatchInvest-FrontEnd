@@ -1,26 +1,45 @@
-import { Text, View } from "react-native";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Alert, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../navigation/types";
+import { getToken } from "../../AsyncStorage";
 import { styles } from "./styles";
 import { Card } from "../../components/Card";
-import { useNavigation } from "@react-navigation/native";
 
 export default function PickAssessor() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-  const assessors = [
-    { name: "Heitor Dib", description: "Fundo de ações" },
-    {
-      name: "Lucas Pereira",
-      description: "Assessor especialista em renda fixa",
-    },
-    { name: "Marina Costa", description: "Consultora de investimentos ESG" },
-    {
-      name: "Bruno Martins",
-      description: "Especialista em previdência privada",
-    },
-    { name: "Ana Luiza", description: "Planejamento financeiro familiar" },
-    { name: "Carlos Mendes", description: "Investimentos internacionais" },
-    { name: "Fernanda Rocha", description: "Fundos imobiliários e FIAGRO" },
-  ];
+  const [assessors, setAssessors] = useState<any[]>([]);
+
+  const endpoint = "http://localhost:8080/api/v1/advisors?page=0&size=5";
+
+  useEffect(() => {
+    const fetchAssessors = async () => {
+      const token = await getToken();
+
+      if (!token) {
+        Alert.alert("Erro", "Token não encontrado");
+        return;
+      }
+
+      try {
+        const response = await axios.get(endpoint, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setAssessors(response.data.content);
+      } catch (error) {
+        console.error("Erro ao buscar assessores:", error);
+        Alert.alert("Erro", "Não foi possível carregar os assessores.");
+      }
+    };
+
+    fetchAssessors();
+  }, []);
 
   return (
     <View style={styles.backgroundView}>
@@ -30,12 +49,14 @@ export default function PickAssessor() {
         Escolha um assessor que se encaixe melhor com seus ideais!
       </Text>
 
-      {assessors.map((assessor, index) => (
+      {assessors.map((assessor) => (
         <Card
-          key={index}
-          name={assessor.name}
-          description={assessor.description}
-          onClick={() => navigation.navigate("InvestorDetails" as never)}
+          key={assessor.id}
+          name={assessor.fullName}
+          description={assessor.bio}
+          onClick={() =>
+            navigation.navigate("InvestorDetails", { assessor })
+          }
         />
       ))}
     </View>

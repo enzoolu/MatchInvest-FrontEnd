@@ -1,40 +1,58 @@
-import { Text, View } from "react-native";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Alert, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { getToken } from "../../AsyncStorage";
 import { styles } from "./styles";
 import { Card } from "../../components/Card";
-import { useNavigation } from "@react-navigation/native";
 
 export default function PickInvestor() {
   const navigation = useNavigation();
+  const [investors, setInvestors] = useState<any[]>([]);
 
-  const assessors = [
-    { name: "Heitor Dib investidor", description: "Fundo de ações" },
-    {
-      name: "Lucas Pereira",
-      description: "Assessor especialista em renda fixa",
-    },
-    { name: "Marina Costa", description: "Consultora de investimentos ESG" },
-    {
-      name: "Bruno Martins",
-      description: "Especialista em previdência privada",
-    },
-    { name: "Ana Luiza", description: "Planejamento financeiro familiar" },
-    { name: "Carlos Mendes", description: "Investimentos internacionais" },
-    { name: "Fernanda Rocha", description: "Fundos imobiliários e FIAGRO" },
-  ];
+  const endpointBase = "http://localhost:8080/api/v1/investors";
+
+  useEffect(() => {
+    const fetchInvestors = async () => {
+      const token = await getToken();
+
+      if (!token) {
+        Alert.alert("Erro", "Token não encontrado");
+        return;
+      }
+
+      try {
+        const response = await axios.get(endpointBase, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setInvestors(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar investidores:", error);
+        Alert.alert(
+          "Erro",
+          "Não foi possível carregar os investidores. Verifique se realizou o chooseRole e se o backend está funcionando corretamente."
+        );
+      }
+    };
+
+    fetchInvestors();
+  }, []);
 
   return (
     <View style={styles.backgroundView}>
       <Text style={styles.styledTitle}>MatchInvest</Text>
-
       <Text style={styles.styledSubtitle}>
-        Escolha um assessor que se encaixe melhor com seus ideais!
+        Escolha um investidor que se encaixe melhor com seus ideais!
       </Text>
 
-      {assessors.map((assessor, index) => (
+      {investors.map((investor, index) => (
         <Card
           key={index}
-          name={assessor.name}
-          description={assessor.description}
+          name={investor.name}
+          description={investor.description}
           onClick={() => navigation.navigate("AssessorDetails" as never)}
         />
       ))}

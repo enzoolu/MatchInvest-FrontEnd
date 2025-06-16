@@ -1,5 +1,5 @@
 import { View, Text, TextInput, Animated } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import CustomButton from "../../components/CustomButton";
 import { styles } from './styles';
 import { Feather, AntDesign } from "@expo/vector-icons";
@@ -7,6 +7,9 @@ import { useState, useRef } from "react";
 
 export default function InvestorDetails() {
   const navigation = useNavigation();
+  const route = useRoute();
+  const { investor }: any = route.params;
+
   const [showPopup, setShowPopup] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -40,16 +43,14 @@ export default function InvestorDetails() {
         <View style={styles.profileContainer}>
           <View style={styles.avatar} />
           <View>
-            <Text style={styles.name}>Heitor Dib</Text>
-            <Text style={styles.followers}>10 mil investidores</Text>
+            <Text style={styles.name}>{investor.fullName}</Text>
           </View>
         </View>
 
         <View style={styles.BioContainer}>
           <Text style={styles.sectionTitle}>Biografia</Text>
           <Text style={styles.bio}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            {investor.bio}
           </Text>
         </View>
 
@@ -57,7 +58,7 @@ export default function InvestorDetails() {
           <Text style={styles.sectionTitle}>Enviar Mensagem</Text>
           <TextInput
             style={styles.input}
-            placeholder="Lorem ipsum"
+            placeholder="Digite sua mensagem"
             placeholderTextColor="#A5ACAF"
             multiline
           />
