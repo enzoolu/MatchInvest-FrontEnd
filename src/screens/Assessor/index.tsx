@@ -1,10 +1,12 @@
-import { useState } from "react";
-import { ScrollView, Text, TextInput, View } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import { Animated, ScrollView, Text, TextInput, View } from "react-native";
 import { styles } from "./styles";
 import { Header } from "../../components/Header";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 import CustomSelect from "../../components/Select";
 import CustomButton from "../../components/CustomButton";
+import axios from "axios";
+import { getToken } from "../../AsyncStorage";
 
 export default function Assessor() {
   const navigation = useNavigation();
@@ -13,15 +15,70 @@ export default function Assessor() {
   const [specialty, setSpecialty] = useState<string | null>(null);
   const [hourValue, setHourValue] = useState<string>("");
   const [bio, setBio] = useState<string>("");
+  const [token, setToken] = useState("");
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  const postProfile = async () => {
+    await axios.post(
+      "http://localhost:8080/api/v1/advisors",
+      {
+        certifications: [certification],
+        specialties: [specialty],
+        bio,
+        hourlyRate: hourValue,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  };
 
   const handleButtonClick = () => {
-    navigation.navigate("PickInvestor" as never);
+    if (!certification || !specialty || !hourValue || !bio) {
+      setShowPopup(true);
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 200,
+        useNativeDriver: true,
+      }).start();
 
-    console.log("Certificação:", certification);
-    console.log("Especialidade:", specialty);
-    console.log("Valor por hora:", hourValue);
-    console.log("Biografia:", bio);
+      setTimeout(() => {
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 200,
+          useNativeDriver: true,
+        }).start(() => {
+          setShowPopup(false);
+        });
+      }, 1000);
+
+      return;
+    }
+
+    try {
+      postProfile().then(() => {
+        navigation.navigate("PickInvestor" as never);
+      });
+    } catch (error) {
+      console.error("Erro ao criar perfil:", error);
+    }
   };
+
+  useEffect(() => {
+    getToken().then((res) => {
+      if (res) {
+        setToken(res);
+        console.log(token);
+      } else {
+        console.error("Token not found");
+      }
+    });
+  }, []);
 
   return (
     <ScrollView style={styles.backgroundView}>
@@ -89,6 +146,14 @@ export default function Assessor() {
 
         <CustomButton title="Criar perfil" onClick={handleButtonClick} />
       </View>
+
+      {showPopup && (
+        <Animated.View style={[styles.popup, { opacity: fadeAnim }]}>
+          <Text style={styles.popupText}>
+            Preencha os campos antes de prosseguir!
+          </Text>
+        </Animated.View>
+      )}
     </ScrollView>
   );
 }

@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#4A4A4C",
     height: 48,
     borderRadius: 10,
-    paddingHorizontal: 16,
+    padding: 16,
     color: "#A5ACAF",
     shadowColor: "#171717",
     shadowOffset: { width: -2, height: 4 },
@@ -43,5 +43,23 @@ export const styles = StyleSheet.create({
   },
   selectContainer: {
     marginBottom: 20,
+  },
+
+  popup: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: [{ translateX: -100 }, { translateY: -50 }],
+    width: 200,
+    padding: 15,
+    backgroundColor: "rgba(0,0,0,0.9)",
+    borderRadius: 10,
+    alignItems: "center",
+    zIndex: 100,
+  },
+  popupText: {
+    color: "red",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
