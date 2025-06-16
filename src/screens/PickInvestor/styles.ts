@@ -26,4 +26,15 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     paddingHorizontal: 50,
   },
+  footerContainer: {
+    width: "100%",
+    display: "flex",
+    paddingVertical: 20,
+    paddingHorizontal: 35,
+    backgroundColor: "#2C2C2E",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 20,
+  },
 });

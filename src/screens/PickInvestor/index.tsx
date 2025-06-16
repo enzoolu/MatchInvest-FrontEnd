@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Alert, Text, View } from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../navigation/types";
 import { getToken } from "../../AsyncStorage";
 import { styles } from "./styles";
 import { Card } from "../../components/Card";
+import { Feather, AntDesign } from "@expo/vector-icons";
 
 export default function PickInvestor() {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [investors, setInvestors] = useState<any[]>([]);
 
   const endpoint = "http://localhost:8080/api/v1/investors";
@@ -64,10 +66,23 @@ export default function PickInvestor() {
         <Card
           key={investor.id}
           name={investor.name}
-          description={`Capital: R$ ${investor.capitalAvailable}  Risco: ${traduzirRisco(investor.riskAppetite)}`}
+          description={`Capital: R$ ${
+            investor.capitalAvailable
+          }  Risco: ${traduzirRisco(investor.riskAppetite)}`}
           onClick={() => navigation.navigate("AssessorDetails", { investor })}
         />
       ))}
+
+      <View style={styles.footerContainer}>
+        <TouchableOpacity onPress={() => console.log("tela q vai aqui")}>
+          <Feather name="home" size={26} color="orange" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Profile" as never)}
+        >
+          <AntDesign name="user" size={26} color="orange" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
