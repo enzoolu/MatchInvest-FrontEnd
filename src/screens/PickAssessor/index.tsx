@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Alert, Text, View } from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../navigation/types";
 import { getToken } from "../../AsyncStorage";
 import { styles } from "./styles";
 import { Card } from "../../components/Card";
+import { Feather, AntDesign } from "@expo/vector-icons";
 
 export default function PickAssessor() {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const [assessors, setAssessors] = useState<any[]>([]);
 
@@ -54,11 +56,20 @@ export default function PickAssessor() {
           key={assessor.id}
           name={assessor.fullName}
           description={assessor.bio}
-          onClick={() =>
-            navigation.navigate("InvestorDetails", { assessor })
-          }
+          onClick={() => navigation.navigate("InvestorDetails", { assessor })}
         />
       ))}
+
+      <View style={styles.footerContainer}>
+        <TouchableOpacity onPress={() => console.log("tela q vai aqui")}>
+          <Feather name="home" size={26} color="orange" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Profile" as never)}
+        >
+          <AntDesign name="user" size={26} color="orange" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
