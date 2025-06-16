@@ -82,4 +82,21 @@ export const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "#444",
   },
+  popup: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -100 }, { translateY: -50 }],
+    width: 200,
+    padding: 15,
+    backgroundColor: 'rgba(0,0,0,0.9)',
+    borderRadius: 10,
+    alignItems: 'center',
+    zIndex: 100,
+  },
+  popupText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 });

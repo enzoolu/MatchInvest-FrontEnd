@@ -1,9 +1,35 @@
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, Animated } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../../components/CustomButton";
 import { styles } from './styles';
 import { Feather, AntDesign } from "@expo/vector-icons";
+import { useState, useRef } from "react";
 
 export default function AssessorDetails() {
+    const navigation = useNavigation();
+    const [showPopup, setShowPopup] = useState(false);
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+  
+    const handleSendMessage = () => {
+      setShowPopup(true);
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 200,
+        useNativeDriver: true,
+      }).start();
+  
+      setTimeout(() => {
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 200,
+          useNativeDriver: true,
+        }).start(() => {
+          setShowPopup(false);
+          navigation.goBack();
+        });
+      }, 1000);
+    };
+
   return (
     <View style={styles.backgroundView}>
       <View style={styles.headerContainer}>
@@ -47,9 +73,16 @@ export default function AssessorDetails() {
 
       <View style={styles.footerContainer}>
         <Feather name="home" size={26} color="orange" />
-        <CustomButton title="Enviar" onClick={() => {}} />
+        <CustomButton title="Enviar" onClick={handleSendMessage} />
         <AntDesign name="user" size={26} color="orange" />
       </View>
+
+
+      {showPopup && (
+              <Animated.View style={[styles.popup, { opacity: fadeAnim }]}>
+                <Text style={styles.popupText}>Mensagem enviada!</Text>
+              </Animated.View>
+        )}
     </View>
   );
 }
