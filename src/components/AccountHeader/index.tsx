@@ -4,7 +4,11 @@ import { AccountHeaderProps } from "./types";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export const AccountHeader = ({ name, description }: AccountHeaderProps) => {
+export const AccountHeader = ({
+  name,
+  description,
+  hasTitle,
+}: AccountHeaderProps) => {
   const navigation = useNavigation();
 
   return (
@@ -17,9 +21,11 @@ export const AccountHeader = ({ name, description }: AccountHeaderProps) => {
         onPress={() => navigation.goBack()}
       />
 
-      <View style={styles.headerContainer}>
-        <Text style={styles.title}>MatchInvest</Text>
-      </View>
+      {hasTitle && (
+        <View style={styles.headerContainer}>
+          <Text style={styles.title}>MatchInvest</Text>
+        </View>
+      )}
 
       <View style={styles.screenContainer}>
         <View style={styles.profileContainer}>
@@ -29,7 +35,7 @@ export const AccountHeader = ({ name, description }: AccountHeaderProps) => {
           </View>
         </View>
       </View>
-      <Text style={styles.description}>{description}</Text>
+      {description && <Text style={styles.description}>{description}</Text>}
     </View>
   );
 };
