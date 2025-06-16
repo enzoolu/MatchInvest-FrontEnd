@@ -1,14 +1,13 @@
 import { View, Text, TextInput, Animated } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import CustomButton from "../../components/CustomButton";
-import { styles } from './styles';
-import { Feather, AntDesign } from "@expo/vector-icons";
+import { styles } from "./styles";
 import { useState, useRef } from "react";
 
 export default function InvestorDetails() {
   const navigation = useNavigation();
   const route = useRoute();
-  const { assessor }: any = route.params;  // Aqui recebe o assessor da tela anterior
+  const { assessor }: any = route.params; // Aqui recebe o assessor da tela anterior
 
   const [showPopup, setShowPopup] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -49,9 +48,7 @@ export default function InvestorDetails() {
 
         <View style={styles.BioContainer}>
           <Text style={styles.sectionTitle}>Biografia</Text>
-          <Text style={styles.bio}>
-            {assessor.bio}
-          </Text>
+          <Text style={styles.bio}>{assessor.bio}</Text>
         </View>
 
         <View style={styles.msgContainer}>
@@ -66,9 +63,7 @@ export default function InvestorDetails() {
       </View>
 
       <View style={styles.footerContainer}>
-        <Feather name="home" size={26} color="orange" />
         <CustomButton title="Enviar" onClick={handleSendMessage} />
-        <AntDesign name="user" size={26} color="orange" />
       </View>
 
       {showPopup && (
