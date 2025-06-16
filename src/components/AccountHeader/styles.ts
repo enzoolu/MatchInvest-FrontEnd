@@ -43,4 +43,5 @@ export const styles = StyleSheet.create({
     left: 35,
     zIndex: 999,
   },
+  description: {},
 });
