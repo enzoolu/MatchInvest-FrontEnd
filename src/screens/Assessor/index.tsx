@@ -7,7 +7,7 @@ import CustomSelect from "../../components/Select";
 import CustomButton from "../../components/CustomButton";
 
 export default function Assessor() {
-  const navigation = useNavigation(); // 👈 Faltava isso!
+  const navigation = useNavigation();
 
   const [certification, setCertification] = useState<string | null>(null);
   const [specialty, setSpecialty] = useState<string | null>(null);
@@ -15,7 +15,7 @@ export default function Assessor() {
   const [bio, setBio] = useState<string>("");
 
   const handleButtonClick = () => {
-    navigation.navigate("AssessorDetails" as never);
+    navigation.navigate("PickInvestor" as never);
 
     console.log("Certificação:", certification);
     console.log("Especialidade:", specialty);
