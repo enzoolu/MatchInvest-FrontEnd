@@ -35,7 +35,7 @@ export default function PickAssessor() {
           key={index}
           name={assessor.name}
           description={assessor.description}
-          onClick={() => navigation.navigate("AssessorDetails" as never)}
+          onClick={() => navigation.navigate("InvestorDetails" as never)}
         />
       ))}
     </View>
