@@ -45,30 +45,37 @@ export default function PickAssessor() {
 
   return (
     <View style={styles.backgroundView}>
-      <Text style={styles.styledTitle}>MatchInvest</Text>
+      <View style={styles.contentWrapper}>
+        <Text style={styles.styledTitle}>MatchInvest</Text>
 
-      <Text style={styles.styledSubtitle}>
-        Escolha um assessor que se encaixe melhor com seus ideais!
-      </Text>
+        <Text style={styles.styledSubtitle}>
+          Escolha um assessor que se encaixe melhor com seus ideais!
+        </Text>
 
-      {assessors.map((assessor) => (
-        <Card
-          key={assessor.id}
-          name={assessor.fullName}
-          description={assessor.bio}
-          onClick={() => navigation.navigate("InvestorDetails", { assessor })}
-        />
-      ))}
+        {assessors.map((assessor) => (
+          <Card
+            key={assessor.id}
+            name={assessor.fullName}
+            description={assessor.bio}
+            onClick={() => navigation.navigate("InvestorDetails", { assessor })}
+          />
+        ))}
+      </View>
 
       <View style={styles.footerContainer}>
-        <TouchableOpacity onPress={() => console.log("tela q vai aqui")}>
-          <Feather name="home" size={26} color="orange" />
-        </TouchableOpacity>
-        <TouchableOpacity
+        <Feather
+          name="home"
+          size={36}
+          color="orange"
+          onPress={() => console.log("Voce ja esta na home")}
+        />
+
+        <AntDesign
+          name="user"
+          size={26}
+          color="orange"
           onPress={() => navigation.navigate("Profile" as never)}
-        >
-          <AntDesign name="user" size={26} color="orange" />
-        </TouchableOpacity>
+        />
       </View>
     </View>
   );

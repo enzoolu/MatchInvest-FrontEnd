@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Alert, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../navigation/types";
@@ -57,31 +57,38 @@ export default function PickInvestor() {
 
   return (
     <View style={styles.backgroundView}>
-      <Text style={styles.styledTitle}>MatchInvest</Text>
-      <Text style={styles.styledSubtitle}>
-        Escolha um investidor que se encaixe melhor com seus ideais!
-      </Text>
+      <View style={styles.contentWrapper}>
+        <Text style={styles.styledTitle}>MatchInvest</Text>
+        <Text style={styles.styledSubtitle}>
+          Escolha um investidor que se encaixe melhor com seus ideais!
+        </Text>
 
-      {investors.map((investor) => (
-        <Card
-          key={investor.id}
-          name={investor.name}
-          description={`Capital: R$ ${
-            investor.capitalAvailable
-          }  Risco: ${traduzirRisco(investor.riskAppetite)}`}
-          onClick={() => navigation.navigate("AssessorDetails", { investor })}
-        />
-      ))}
+        {investors.map((investor) => (
+          <Card
+            key={investor.id}
+            name={investor.name}
+            description={`Capital: R$ ${
+              investor.capitalAvailable
+            }  Risco: ${traduzirRisco(investor.riskAppetite)}`}
+            onClick={() => navigation.navigate("AssessorDetails", { investor })}
+          />
+        ))}
+      </View>
 
       <View style={styles.footerContainer}>
-        <TouchableOpacity onPress={() => console.log("tela q vai aqui")}>
-          <Feather name="home" size={26} color="orange" />
-        </TouchableOpacity>
-        <TouchableOpacity
+        <Feather
+          name="home"
+          size={36}
+          color="orange"
+          onPress={() => console.log("Voce ja esta na home")}
+        />
+
+        <AntDesign
+          name="user"
+          size={26}
+          color="orange"
           onPress={() => navigation.navigate("Profile" as never)}
-        >
-          <AntDesign name="user" size={26} color="orange" />
-        </TouchableOpacity>
+        />
       </View>
     </View>
   );

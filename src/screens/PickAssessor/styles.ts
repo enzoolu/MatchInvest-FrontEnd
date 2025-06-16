@@ -37,4 +37,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
   },
+  contentWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
 });
