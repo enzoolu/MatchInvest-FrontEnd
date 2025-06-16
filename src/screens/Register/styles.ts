@@ -1,8 +1,8 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #2C2C2E;
+  background-color: #2c2c2e;
 `;
 
 export const Content = styled.View`
@@ -15,10 +15,11 @@ export const FormArea = styled.View`
 `;
 
 export const SubTitle = styled.Text`
-  font-size: 20px;
-  color: #A5ACAF;
+  font-size: 16px;
+  color: #a5acaf;
   text-align: center;
-  margin-bottom: 50px;
+  margin-top: 5px;
+  margin-bottom: 20px;
 `;
 
 export const Input = styled.TextInput`
@@ -35,7 +36,7 @@ export const LinkArea = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 export const TextNormal = styled.Text`
