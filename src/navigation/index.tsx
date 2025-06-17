@@ -30,11 +30,11 @@ export function Routes() {
       <Stack.Screen name="PickInvestor" component={PickInvestor} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen
-        name="EditAccountInvestor"
+        name="EditAccountinvestors"
         component={EditAccountInvestor}
       />
       <Stack.Screen
-        name="EditAccountAssessor"
+        name="EditAccountassessors"
         component={EditAccountAssessor}
       />
     </Stack.Navigator>

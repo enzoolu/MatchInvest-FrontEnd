@@ -87,7 +87,7 @@ export default function Profile() {
           iconName="square-edit-outline"
           title="Editar conta"
           description="Edite a sua descrição, interesses e detalhes da conta"
-          onPress={() => console.log("Editar conta pressionado")}
+          onPress={() => navigation.navigate(`EditAccount${userType}` as never)}
         />
         <ProfileCard
           iconName="trash-can-outline"
