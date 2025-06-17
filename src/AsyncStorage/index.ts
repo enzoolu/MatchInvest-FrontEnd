@@ -9,7 +9,7 @@ export async function saveToken(token: string) {
 }
 
 export async function saveUserId(userId: string) {
-  await AsyncStorage.setItem(TOKEN_KEY, userId);
+  await AsyncStorage.setItem(USER_ID, userId);
 }
 
 export async function saveUserType(userType: string) {

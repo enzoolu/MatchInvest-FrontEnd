@@ -95,7 +95,6 @@ export default function Profile() {
           description="Delete a sua conta e todos os seus dados"
           onPress={handleDeleteButtonClick}
         />
-        q
         <ProfileCard
           iconName="exit-to-app"
           title="Sair da conta"
