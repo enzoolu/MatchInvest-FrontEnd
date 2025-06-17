@@ -4,7 +4,7 @@ import { styles } from "./styles";
 import { Header } from "../../components/Header";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
-import { getToken } from "../../AsyncStorage";
+import { getToken, saveUserId, saveUserType } from "../../AsyncStorage";
 import FormAssessor from "../../components/FormAssessor";
 
 export default function Assessor() {
@@ -20,20 +20,25 @@ export default function Assessor() {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const postProfile = async () => {
-    await axios.post(
-      "http://localhost:8080/api/v1/advisors",
-      {
-        certifications: [certification],
-        specialties: [specialty],
-        bio,
-        hourlyRate: hourValue,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
+    await axios
+      .post(
+        "http://localhost:8080/api/v1/advisors",
+        {
+          certifications: [certification],
+          specialties: [specialty],
+          bio,
+          hourlyRate: hourValue,
         },
-      }
-    );
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        saveUserId(response.data.id);
+        saveUserType("advisors");
+      });
   };
 
   const handleButtonClick = () => {

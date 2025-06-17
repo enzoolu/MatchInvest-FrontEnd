@@ -8,9 +8,15 @@ const CustomButton = ({
   height,
   width,
   fontSize,
+  color,
 }: CustomButtonProps) => {
   return (
-    <ButtonContainer height={height} width={width} onPress={onClick}>
+    <ButtonContainer
+      height={height}
+      width={width}
+      onPress={onClick}
+      color={color}
+    >
       <ButtonText fontSize={fontSize}>{title}</ButtonText>
     </ButtonContainer>
   );

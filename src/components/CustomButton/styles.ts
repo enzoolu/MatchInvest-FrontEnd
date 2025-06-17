@@ -6,7 +6,7 @@ export const ButtonContainer = styled.TouchableOpacity<CustomButtonStyleProps>`
   height: ${({ height }) => height || "auto"};
   padding: 15px;
   border-radius: 30px;
-  background-color: #c28800;
+  background-color: ${({ color }) => color || "#c28800"};
   align-items: center;
   justify-content: center;
   align-self: center;
