@@ -9,4 +9,5 @@ export type RootStackParamList = {
   AssessorDetails: { investor: any };
   PickAssessor: undefined;
   PickInvestor: undefined;
+  EditAccountInvestor: undefined;
 };

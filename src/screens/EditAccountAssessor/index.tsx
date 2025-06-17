@@ -1,24 +1,26 @@
 import { useEffect, useRef, useState } from "react";
-import { Animated, ScrollView, Text, View } from "react-native";
+import { Animated, ScrollView } from "react-native";
 import { AccountHeader } from "../../components/AccountHeader";
-import FormInvestor from "../../components/FormInvestor";
+import FormAssessor from "../../components/FormAssessor";
 import { getToken } from "../../AsyncStorage";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
 
-export default function EditAccountInvestor() {
+export default function EditAccountAssessor() {
   const navigation = useNavigation();
 
-  const [capital, setCapital] = useState("");
-  const [selected, setSelected] = useState("");
+  const [certification, setCertification] = useState<string | null>(null);
+  const [specialty, setSpecialty] = useState<string | null>(null);
+  const [hourValue, setHourValue] = useState<string>("");
+  const [bio, setBio] = useState<string>("");
   const [token, setToken] = useState("");
 
   const [showPopup, setShowPopup] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const handleSave = async () => {
-    if (!capital || !selected) {
+    if (!certification || !specialty || !hourValue || !bio) {
       setShowPopup(true);
       Animated.timing(fadeAnim, {
         toValue: 1,
@@ -41,10 +43,12 @@ export default function EditAccountInvestor() {
 
     try {
       await axios.put(
-        "http://localhost:8080/api/v1/investors/2",
+        "http://localhost:8080/api/v1/advisors/2",
         {
-          capitalAvailable: capital,
-          riskAppetite: selected,
+          certifications: [certification],
+          specialties: [specialty],
+          bio: bio,
+          hourlyRate: hourValue,
         },
         {
           headers: {
@@ -69,23 +73,30 @@ export default function EditAccountInvestor() {
   }, []);
 
   return (
-    <View style={styles.backgroundView}>
-        <AccountHeader
-            name="Heitor Dib"
-            description="Edite suas informacoes"
-            hasTitle={false}
-        />
+    <ScrollView
+      style={styles.backgroundView}
+      contentContainerStyle={{ paddingBottom: 80 }}
+    >
+      <AccountHeader
+        name="Heitor Dib"
+        description="Edite suas informações"
+        hasTitle={false}
+      />
 
-        <FormInvestor
-            capital={capital}
-            setCapital={setCapital}
-            selected={selected}
-            setSelected={setSelected}
-            handleButtonClick={handleSave}
-            showPopup={showPopup}
-            fadeAnim={fadeAnim}
-            buttonTitle="Salvar"
-        />
-    </View>
+      <FormAssessor
+        certification={certification}
+        setCertification={setCertification}
+        specialty={specialty}
+        setSpecialty={setSpecialty}
+        hourValue={hourValue}
+        setHourValue={setHourValue}
+        bio={bio}
+        setBio={setBio}
+        handleButtonClick={handleSave}
+        showPopup={showPopup}
+        fadeAnim={fadeAnim}
+        buttonTitle="Salvar"
+      />
+    </ScrollView>
   );
 }
