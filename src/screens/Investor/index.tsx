@@ -5,7 +5,7 @@ import { styles } from "./styles";
 import { Header } from "../../components/Header";
 import CustomSelect from "../../components/Select";
 import CustomButton from "../../components/CustomButton";
-import { getToken } from "../../AsyncStorage";
+import { getToken, saveUserId, saveUserType } from "../../AsyncStorage";
 import axios from "axios";
 
 export default function Investor() {
@@ -18,18 +18,23 @@ export default function Investor() {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const postProfile = async () => {
-    await axios.post(
-      "http://localhost:8080/api/v1/investors",
-      {
-        capitalAvailable: capital,
-        riskAppetite: selected,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
+    await axios
+      .post(
+        "http://localhost:8080/api/v1/investors",
+        {
+          capitalAvailable: capital,
+          riskAppetite: selected,
         },
-      }
-    );
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        saveUserId(response.data.id);
+        saveUserType("investors");
+      });
   };
 
   const handleButtonClick = () => {

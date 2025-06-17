@@ -9,6 +9,7 @@ import InvestorDetails from "../screens/InvestorDetails";
 import AssessorDetails from "../screens/AssessorDetails";
 import PickAssessor from "../screens/PickAssessor";
 import PickInvestor from "../screens/PickInvestor";
+import Profile from "../screens/Profile";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ export function Routes() {
       <Stack.Screen name="AssessorDetails" component={AssessorDetails} />
       <Stack.Screen name="PickAssessor" component={PickAssessor} />
       <Stack.Screen name="PickInvestor" component={PickInvestor} />
+      <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );
 }
