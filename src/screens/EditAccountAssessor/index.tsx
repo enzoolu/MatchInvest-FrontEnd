@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Animated, ScrollView } from "react-native";
 import { AccountHeader } from "../../components/AccountHeader";
 import FormAssessor from "../../components/FormAssessor";
-import { getToken } from "../../AsyncStorage";
+import { getToken, getUserId, getUserType } from "../../AsyncStorage";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
@@ -15,6 +15,8 @@ export default function EditAccountAssessor() {
   const [hourValue, setHourValue] = useState<string>("");
   const [bio, setBio] = useState<string>("");
   const [token, setToken] = useState("");
+  const [userId, setUserId] = useState("");
+  const [userType, setUserType] = useState("");
 
   const [showPopup, setShowPopup] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -43,7 +45,7 @@ export default function EditAccountAssessor() {
 
     try {
       await axios.put(
-        "http://localhost:8080/api/v1/advisors/2",
+        `http://localhost:8080/api/v1/${userType}/${userId}`,
         {
           certifications: [certification],
           specialties: [specialty],
@@ -63,13 +65,17 @@ export default function EditAccountAssessor() {
   };
 
   useEffect(() => {
-    getToken().then((res) => {
-      if (res) {
-        setToken(res);
-      } else {
-        console.error("Token não encontrado");
-      }
-    });
+    getUserId().then((id) => {
+        setUserId(id || "");
+      });
+    
+        getUserType().then((type) => {
+          setUserType(type || "");
+        });
+    
+        getToken().then((token) => {
+          setToken(token || "");
+        });
   }, []);
 
   return (

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Animated, ScrollView, Text, View } from "react-native";
 import { AccountHeader } from "../../components/AccountHeader";
 import FormInvestor from "../../components/FormInvestor";
-import { getToken } from "../../AsyncStorage";
+import { getToken, getUserId, getUserType } from "../../AsyncStorage";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
@@ -16,6 +16,8 @@ export default function EditAccountInvestor() {
 
   const [showPopup, setShowPopup] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const [userId, setUserId] = useState("");
+  const [userType, setUserType] = useState("");
 
   const handleSave = async () => {
     if (!capital || !selected) {
@@ -41,7 +43,7 @@ export default function EditAccountInvestor() {
 
     try {
       await axios.put(
-        "http://localhost:8080/api/v1/investors/2",
+        `http://localhost:8080/api/v1/${userType}/${userId}`,
         {
           capitalAvailable: capital,
           riskAppetite: selected,
@@ -59,14 +61,18 @@ export default function EditAccountInvestor() {
   };
 
   useEffect(() => {
-    getToken().then((res) => {
-      if (res) {
-        setToken(res);
-      } else {
-        console.error("Token não encontrado");
-      }
-    });
-  }, []);
+      getUserId().then((id) => {
+          setUserId(id || "");
+        });
+      
+          getUserType().then((type) => {
+            setUserType(type || "");
+          });
+      
+          getToken().then((token) => {
+            setToken(token || "");
+          });
+    }, []);
 
   return (
     <View style={styles.backgroundView}>
