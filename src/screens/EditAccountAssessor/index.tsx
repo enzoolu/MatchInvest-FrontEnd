@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { ScrollView, Animated } from "react-native";
-import { styles } from "./styles";
-import { Header } from "../../components/Header";
-import { useNavigation } from "@react-navigation/native";
-import axios from "axios";
-import { getToken, saveUserId, saveUserType } from "../../AsyncStorage";
+import { Animated, ScrollView } from "react-native";
+import { AccountHeader } from "../../components/AccountHeader";
 import FormAssessor from "../../components/FormAssessor";
+import { getToken } from "../../AsyncStorage";
+import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
+import { styles } from "./styles";
 
-export default function Assessor() {
+export default function EditAccountAssessor() {
   const navigation = useNavigation();
 
   const [certification, setCertification] = useState<string | null>(null);
@@ -19,29 +19,7 @@ export default function Assessor() {
   const [showPopup, setShowPopup] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  const postProfile = async () => {
-    await axios
-      .post(
-        "http://localhost:8080/api/v1/advisors",
-        {
-          certifications: [certification],
-          specialties: [specialty],
-          bio,
-          hourlyRate: hourValue,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((response) => {
-        saveUserId(response.data.id);
-        saveUserType("advisors");
-      });
-  };
-
-  const handleButtonClick = () => {
+  const handleSave = async () => {
     if (!certification || !specialty || !hourValue || !bio) {
       setShowPopup(true);
       Animated.timing(fadeAnim, {
@@ -64,11 +42,23 @@ export default function Assessor() {
     }
 
     try {
-      postProfile().then(() => {
-        navigation.navigate("PickInvestor" as never);
-      });
+      await axios.put(
+        "http://localhost:8080/api/v1/advisors/2",
+        {
+          certifications: [certification],
+          specialties: [specialty],
+          bio: bio,
+          hourlyRate: hourValue,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      navigation.goBack();
     } catch (error) {
-      console.error("Erro ao criar perfil:", error);
+      console.error("Erro ao salvar perfil:", error);
     }
   };
 
@@ -77,14 +67,22 @@ export default function Assessor() {
       if (res) {
         setToken(res);
       } else {
-        console.error("Token not found");
+        console.error("Token não encontrado");
       }
     });
   }, []);
 
   return (
-    <ScrollView style={styles.backgroundView}>
-      <Header />
+    <ScrollView
+      style={styles.backgroundView}
+      contentContainerStyle={{ paddingBottom: 80 }}
+    >
+      <AccountHeader
+        name="Heitor Dib"
+        description="Edite suas informações"
+        hasTitle={false}
+      />
+
       <FormAssessor
         certification={certification}
         setCertification={setCertification}
@@ -94,10 +92,10 @@ export default function Assessor() {
         setHourValue={setHourValue}
         bio={bio}
         setBio={setBio}
-        handleButtonClick={handleButtonClick}
+        handleButtonClick={handleSave}
         showPopup={showPopup}
         fadeAnim={fadeAnim}
-        buttonTitle="Criar perfil"
+        buttonTitle="Salvar"
       />
     </ScrollView>
   );

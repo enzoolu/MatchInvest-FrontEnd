@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { Text, TextInput, View, Animated } from "react-native";
+import { View, Animated } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
 import { Header } from "../../components/Header";
-import CustomSelect from "../../components/Select";
-import CustomButton from "../../components/CustomButton";
 import { getToken, saveUserId, saveUserType } from "../../AsyncStorage";
 import axios from "axios";
+import FormInvestor from "../../components/FormInvestor";
 
 export default function Investor() {
   const navigation = useNavigation();
@@ -72,7 +71,6 @@ export default function Investor() {
     getToken().then((res) => {
       if (res) {
         setToken(res);
-        console.log(token);
       } else {
         console.error("Token not found");
       }
@@ -84,49 +82,16 @@ export default function Investor() {
       <View style={styles.backgroundView}>
         <Header />
 
-        <View style={styles.screenContainer}>
-          <View style={styles.capitalContainer}>
-            <Text style={styles.styledText}>
-              <Text style={styles.styledTextOrange}>Capital</Text> disponível
-            </Text>
-
-            <TextInput
-              style={styles.styledInput}
-              placeholder="Insira um valor"
-              placeholderTextColor="#A5ACAF"
-              keyboardType="numeric"
-              value={capital}
-              onChangeText={setCapital}
-            />
-          </View>
-
-          <View style={styles.capitalContainer}>
-            <Text style={styles.styledText}>
-              <Text style={styles.styledTextOrange}>Perfil</Text> de risco
-            </Text>
-
-            <CustomSelect
-              label="Perfil de Risco"
-              items={[
-                { label: "Baixo", value: "LOW" },
-                { label: "Médio", value: "MEDIUM" },
-                { label: "Alto", value: "HIGH" },
-              ]}
-              onValueChange={setSelected}
-              value={selected}
-            />
-          </View>
-
-          <CustomButton title="Criar perfil" onClick={handleButtonClick} />
-        </View>
-
-        {showPopup && (
-          <Animated.View style={[styles.popup, { opacity: fadeAnim }]}>
-            <Text style={styles.popupText}>
-              Preencha os campos antes de prosseguir!
-            </Text>
-          </Animated.View>
-        )}
+        <FormInvestor
+          capital={capital}
+          setCapital={setCapital}
+          selected={selected}
+          setSelected={setSelected}
+          handleButtonClick={handleButtonClick}
+          showPopup={showPopup}
+          fadeAnim={fadeAnim}
+          buttonTitle="Criar perfil"
+        />
       </View>
     )
   );

@@ -43,5 +43,11 @@ export const styles = StyleSheet.create({
     left: 35,
     zIndex: 999,
   },
-  description: {},
+  description: {
+    color: '#A5ACAF', 
+    fontSize: 16, 
+    fontStyle: 'italic', 
+    textAlign: 'center', 
+    marginTop: 12 
+  },
 });
