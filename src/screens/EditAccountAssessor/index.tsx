@@ -63,6 +63,8 @@ export default function EditAccountAssessor() {
     // } catch (error) {
     //   console.error("Erro ao salvar perfil:", error);
     // }
+
+    navigation.navigate("Profile" as never);
   };
 
   useEffect(() => {

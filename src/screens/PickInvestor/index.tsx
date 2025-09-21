@@ -8,11 +8,12 @@ import { getToken } from "../../AsyncStorage";
 import { styles } from "./styles";
 import { Card } from "../../components/Card";
 import { Feather, AntDesign } from "@expo/vector-icons";
+import { investorMock } from "./mock";
 
 export default function PickInvestor() {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const [investors, setInvestors] = useState<any[]>([]);
+  const [investors, setInvestors] = useState<any[]>([investorMock]);
 
   const endpoint = "http://localhost:8080/api/v1/investors";
 

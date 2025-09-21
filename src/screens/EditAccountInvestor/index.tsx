@@ -41,57 +41,60 @@ export default function EditAccountInvestor() {
       return;
     }
 
-    try {
-      await axios.put(
-        `http://localhost:8080/api/v1/${userType}/${userId}`,
-        {
-          capitalAvailable: capital,
-          riskAppetite: selected,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      navigation.goBack();
-    } catch (error) {
-      console.error("Erro ao salvar perfil:", error);
-    }
+    // try {
+    //   await axios.put(
+    //     `http://localhost:8080/api/v1/${userType}/${userId}`,
+    //     {
+    //       capitalAvailable: capital,
+    //       riskAppetite: selected,
+    //     },
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     }
+    //   );
+    //   navigation.goBack();
+    // } catch (error) {
+    //   console.error("Erro ao salvar perfil:", error);
+    // }
+
+    navigation.navigate("Profile" as never);
   };
 
   useEffect(() => {
-      getUserId().then((id) => {
-          setUserId(id || "");
-        });
-      
-          getUserType().then((type) => {
-            setUserType(type || "");
-          });
-      
-          getToken().then((token) => {
-            setToken(token || "");
-          });
-    }, []);
+    getUserId().then((id) => {
+      setUserId(id || "");
+    });
+
+    getUserType().then((type) => {
+      setUserType(type || "");
+    });
+
+    getToken().then((token) => {
+      setToken(token || "");
+    });
+  }, []);
 
   return (
     <View style={styles.backgroundView}>
-        <AccountHeader
-            name="Heitor Dib"
-            description="Edite suas informacoes"
-            hasTitle={false}
-        />
+      <AccountHeader
+        name="Heitor Dib"
+        description="Edite suas informacoes"
+        hasTitle={false}
+        goBack="Profile"
+      />
 
-        <FormInvestor
-            capital={capital}
-            setCapital={setCapital}
-            selected={selected}
-            setSelected={setSelected}
-            handleButtonClick={handleSave}
-            showPopup={showPopup}
-            fadeAnim={fadeAnim}
-            buttonTitle="Salvar"
-        />
+      <FormInvestor
+        capital={capital}
+        setCapital={setCapital}
+        selected={selected}
+        setSelected={setSelected}
+        handleButtonClick={handleSave}
+        showPopup={showPopup}
+        fadeAnim={fadeAnim}
+        buttonTitle="Salvar"
+      />
     </View>
   );
 }
