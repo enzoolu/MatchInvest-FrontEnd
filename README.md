@@ -13,8 +13,8 @@ Aplicativo para matchmaking entre investidores e assessores.
 Clone o repositório:
 
 ```sh
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/enzoolu/MatchInvest-FrontEnd.git
+cd MatchInvest-FrontEnd
 ```
 
 Instale as dependências:
