@@ -14,6 +14,7 @@ import { Header } from "../../components/Header";
 import CustomButton from "../../components/CustomButton";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
+import { saveUserLogin } from "../../AsyncStorage";
 
 export default function Register() {
   const navigation = useNavigation();
@@ -26,7 +27,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleRegister = async () => {
+  const handleRegister = () => {
     if (!name || !user || !email || !password || !confirmPassword) {
       Alert.alert("Erro", "Preencha todos os campos");
       return;
@@ -37,20 +38,24 @@ export default function Register() {
       return;
     }
 
-    await axios
-      .post(`${endpointBase}/auth/register`, {
-        username: user,
-        password: password,
-        confirmPassword: confirmPassword,
-        fullName: name,
-        email: email,
-      })
-      .then((res) => {
-        if (res.status === 201) {
-          Alert.alert("Sucesso", "Registrado com sucesso!");
-          navigation.navigate("Login" as never);
-        }
-      });
+    // await axios
+    //   .post(`${endpointBase}/auth/register`, {
+    //     username: user,
+    //     password: password,
+    //     confirmPassword: confirmPassword,
+    //     fullName: name,
+    //     email: email,
+    //   })
+    //   .then((res) => {
+    //     console.log({ res });
+    //     if (res.status === 201) {
+    //       Alert.alert("Sucesso", "Registrado com sucesso!");
+    //       navigation.navigate("Login" as never);
+    //     }
+    //   });
+
+    saveUserLogin(user, password);
+    navigation.navigate("AccountType" as never);
   };
 
   return (

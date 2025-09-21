@@ -27,7 +27,7 @@ export default function InvestorDetails() {
         useNativeDriver: true,
       }).start(() => {
         setShowPopup(false);
-        navigation.goBack();
+        navigation.navigate("PickAssessor" as never);
       });
     }, 1000);
   };

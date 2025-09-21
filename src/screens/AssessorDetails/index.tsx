@@ -28,7 +28,7 @@ export default function AssessorDetails() {
         useNativeDriver: true,
       }).start(() => {
         setShowPopup(false);
-        navigation.goBack();
+        navigation.navigate("PickInvestor" as never);
       });
     }, 1000);
   };
@@ -60,15 +60,15 @@ export default function AssessorDetails() {
         <View style={styles.CapitalContainer}>
           <Text style={styles.sectionTitle}>Capital Disponível</Text>
           <Text style={styles.bio}>
-            {investor.capitalAvailable ? `R$ ${investor.capitalAvailable}` : "Não informado"}
+            {investor.capitalAvailable
+              ? `R$ ${investor.capitalAvailable}`
+              : "Não informado"}
           </Text>
         </View>
 
         <View style={styles.RiscoContainer}>
           <Text style={styles.sectionTitle}>Risco</Text>
-          <Text style={styles.bio}>
-            {traduzirRisco(investor.riskAppetite)}
-          </Text>
+          <Text style={styles.bio}>{traduzirRisco(investor.riskAppetite)}</Text>
         </View>
 
         <View style={styles.msgContainer}>

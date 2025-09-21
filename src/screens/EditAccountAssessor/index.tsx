@@ -17,6 +17,7 @@ export default function EditAccountAssessor() {
   const [token, setToken] = useState("");
   const [userId, setUserId] = useState("");
   const [userType, setUserType] = useState("");
+  const [user, setUser] = useState({});
 
   const [showPopup, setShowPopup] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -43,39 +44,39 @@ export default function EditAccountAssessor() {
       return;
     }
 
-    try {
-      await axios.put(
-        `http://localhost:8080/api/v1/${userType}/${userId}`,
-        {
-          certifications: [certification],
-          specialties: [specialty],
-          bio: bio,
-          hourlyRate: hourValue,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      navigation.goBack();
-    } catch (error) {
-      console.error("Erro ao salvar perfil:", error);
-    }
+    // try {
+    //   await axios.put(
+    //     `http://localhost:8080/api/v1/${userType}/${userId}`,
+    //     {
+    //       certifications: [certification],
+    //       specialties: [specialty],
+    //       bio: bio,
+    //       hourlyRate: hourValue,
+    //     },
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     }
+    //   );
+    //   navigation.goBack();
+    // } catch (error) {
+    //   console.error("Erro ao salvar perfil:", error);
+    // }
   };
 
   useEffect(() => {
     getUserId().then((id) => {
-        setUserId(id || "");
-      });
-    
-        getUserType().then((type) => {
-          setUserType(type || "");
-        });
-    
-        getToken().then((token) => {
-          setToken(token || "");
-        });
+      setUserId(id || "");
+    });
+
+    getUserType().then((type) => {
+      setUserType(type || "");
+    });
+
+    getToken().then((token) => {
+      setToken(token || "");
+    });
   }, []);
 
   return (
@@ -87,6 +88,7 @@ export default function EditAccountAssessor() {
         name="Heitor Dib"
         description="Edite suas informações"
         hasTitle={false}
+        goBack="Profile"
       />
 
       <FormAssessor

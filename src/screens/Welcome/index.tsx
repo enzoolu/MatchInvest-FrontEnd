@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Header,
@@ -10,7 +10,7 @@ import {
   ButtonRegister,
   ButtonRegisterText,
   Content,
-} from './styles';
+} from "./styles";
 
 export default function Welcome({ navigation }: any) {
   return (
@@ -18,15 +18,17 @@ export default function Welcome({ navigation }: any) {
       <Header>
         <SubTitle>seja bem vindo ao</SubTitle>
         <Title>MatchInvest</Title>
-        <SubTitle2>Registre-se para começar sua jornada de investimentos!</SubTitle2>
+        <SubTitle2>
+          Registre-se para começar sua jornada de investimentos!
+        </SubTitle2>
       </Header>
 
       <Content>
-        <Button onPress={() => navigation.navigate('Login')}>
+        <Button onPress={() => navigation.navigate("Login")}>
           <ButtonText>LogIn</ButtonText>
         </Button>
 
-        <ButtonRegister onPress={() => navigation.navigate('Register')}>
+        <ButtonRegister onPress={() => navigation.navigate("Register")}>
           <ButtonRegisterText>Registrar</ButtonRegisterText>
         </ButtonRegister>
       </Content>

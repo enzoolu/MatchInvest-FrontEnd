@@ -13,7 +13,12 @@ import {
 import CustomButton from "../../components/CustomButton";
 import { Header } from "../../components/Header";
 import axios from "axios";
-import { saveToken } from "../../AsyncStorage";
+import { getUserLogin, saveToken } from "../../AsyncStorage";
+
+interface IAuth {
+  userLogin: string | null;
+  userPassword: string | null;
+}
 
 export default function Login() {
   const navigation = useNavigation();
@@ -23,6 +28,7 @@ export default function Login() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
+  const [auth, setAuth] = useState<IAuth>();
 
   useFocusEffect(
     useCallback(() => {
@@ -32,20 +38,28 @@ export default function Login() {
   );
 
   const loginAccount = async (user: string, password: string) => {
-    try {
-      await axios
-        .post(`${endpointBase}/auth/login`, {
-          username: user,
-          password: password,
-          rememberMe: true,
-        })
-        .then((res) => {
-          return setToken(res.data.token);
-        });
-    } catch (error) {
-      console.error("Erro ao fazer login:", error);
-      Alert.alert("Erro", "Usuário ou senha inválidos");
-    }
+    // try {
+    //   await axios
+    //     .post(`${endpointBase}/auth/login`, {
+    //       username: user,
+    //       password: password,
+    //       rememberMe: true,
+    //     })
+    //     .then((res) => {
+    //       return setToken(res.data.token);
+    //     });
+    // } catch (error) {
+    //   console.error("Erro ao fazer login:", error);
+    //   Alert.alert("Erro", "Usuário ou senha inválidos");
+    // }
+
+    if (auth?.userLogin === user && auth?.userPassword === password)
+      return navigation.navigate({
+        name: "AccountType",
+        params: { token },
+      } as never);
+
+    return console.error("Authentication failed, user or password incorrect");
   };
 
   const handleLogin = () => {
@@ -64,6 +78,16 @@ export default function Login() {
       navigation.navigate({ name: "AccountType", params: { token } } as never);
     }
   }, [token]);
+
+  useEffect(() => {
+    getUserLogin().then((res) => {
+      if (res) {
+        setAuth(res);
+      } else {
+        console.error("Account not found");
+      }
+    });
+  }, []);
 
   return (
     <Container>

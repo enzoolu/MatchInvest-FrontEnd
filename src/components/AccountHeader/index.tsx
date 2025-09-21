@@ -8,6 +8,7 @@ export const AccountHeader = ({
   name,
   description,
   hasTitle,
+  goBack,
 }: AccountHeaderProps) => {
   const navigation = useNavigation();
 
@@ -18,7 +19,7 @@ export const AccountHeader = ({
         size={25}
         color="#C28800"
         style={styles.backButton}
-        onPress={() => navigation.goBack()}
+        onPress={() => navigation.navigate(goBack as never)}
       />
 
       {hasTitle && (

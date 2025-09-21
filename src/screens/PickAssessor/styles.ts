@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
     color: "#A5ACAF",
     textAlign: "center",
     paddingHorizontal: 50,
+    paddingVertical: 50,
   },
   footerContainer: {
     width: "100%",

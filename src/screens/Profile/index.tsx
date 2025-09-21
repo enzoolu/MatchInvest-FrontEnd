@@ -80,7 +80,11 @@ export default function Profile() {
 
   return (
     <View style={styles.backgroundView}>
-      <AccountHeader name="Perfil" hasTitle />
+      <AccountHeader
+        name="Perfil"
+        hasTitle
+        goBack={userType === "investors" ? "PickAssessor" : "PickInvestor"}
+      />
 
       <View style={styles.screenContainer}>
         <ProfileCard

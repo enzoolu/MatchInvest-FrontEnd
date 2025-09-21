@@ -3,38 +3,42 @@ import { View, Animated } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
 import { Header } from "../../components/Header";
-import { getToken, saveUserId, saveUserType } from "../../AsyncStorage";
-import axios from "axios";
+// import {
+//   getToken,
+//   saveUserId,
+//   saveUserType,
+// } from "../../AsyncStorage";
+// import axios from "axios";
 import FormInvestor from "../../components/FormInvestor";
 
 export default function Investor() {
   const navigation = useNavigation();
   const [selected, setSelected] = useState("");
   const [capital, setCapital] = useState("");
-  const [token, setToken] = useState("");
+  // const [token, setToken] = useState("");
   const [showPopup, setShowPopup] = useState(false);
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  const postProfile = async () => {
-    await axios
-      .post(
-        "http://localhost:8080/api/v1/investors",
-        {
-          capitalAvailable: capital,
-          riskAppetite: selected,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((response) => {
-        saveUserId(response.data.id);
-        saveUserType("investors");
-      });
-  };
+  // const postProfile = async () => {
+  //   await axios
+  //     .post(
+  //       "http://localhost:8080/api/v1/investors",
+  //       {
+  //         capitalAvailable: capital,
+  //         riskAppetite: selected,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       saveUserId(response.data.id);
+  //       saveUserType("investors");
+  //     });
+  // };
 
   const handleButtonClick = () => {
     if (!capital || !selected) {
@@ -58,41 +62,41 @@ export default function Investor() {
       return;
     }
 
-    try {
-      postProfile().then(() => {
-        navigation.navigate("PickAssessor" as never);
-      });
-    } catch (error) {
-      console.error("Erro ao criar perfil:", error);
-    }
+    navigation.navigate("PickAssessor" as never);
+
+    // try {
+    //   postProfile().then(() => {
+    //     navigation.navigate("PickAssessor" as never);
+    //   });
+    // } catch (error) {
+    //   console.error("Erro ao criar perfil:", error);
+    // }
   };
 
-  useEffect(() => {
-    getToken().then((res) => {
-      if (res) {
-        setToken(res);
-      } else {
-        console.error("Token not found");
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   getToken().then((res) => {
+  //     if (res) {
+  //       setToken(res);
+  //     } else {
+  //       console.error("Token not found");
+  //     }
+  //   });
+  // }, []);
 
   return (
-    token && (
-      <View style={styles.backgroundView}>
-        <Header />
+    <View style={styles.backgroundView}>
+      <Header />
 
-        <FormInvestor
-          capital={capital}
-          setCapital={setCapital}
-          selected={selected}
-          setSelected={setSelected}
-          handleButtonClick={handleButtonClick}
-          showPopup={showPopup}
-          fadeAnim={fadeAnim}
-          buttonTitle="Criar perfil"
-        />
-      </View>
-    )
+      <FormInvestor
+        capital={capital}
+        setCapital={setCapital}
+        selected={selected}
+        setSelected={setSelected}
+        handleButtonClick={handleButtonClick}
+        showPopup={showPopup}
+        fadeAnim={fadeAnim}
+        buttonTitle="Criar perfil"
+      />
+    </View>
   );
 }
