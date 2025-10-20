@@ -9,6 +9,7 @@ import { styles } from "./styles";
 import { Card } from "../../components/Card";
 import { Feather, AntDesign } from "@expo/vector-icons";
 import { investorMock } from "./mock";
+import React from "react";
 
 export default function PickInvestor() {
   const navigation =

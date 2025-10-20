@@ -3,6 +3,7 @@ import { styles } from "./styles";
 import CustomSelect from "../Select";
 import CustomButton from "../CustomButton";
 import { FormAssessorProps } from "./types";
+import React from "react";
 
 export default function FormAssessor({
   certification,

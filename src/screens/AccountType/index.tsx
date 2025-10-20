@@ -5,6 +5,7 @@ import { styles } from "./styles";
 import { Button, ButtonText } from "../Welcome/styles";
 import axios from "axios";
 import { getToken, saveUserType } from "../../AsyncStorage";
+import React from "react";
 
 export default function AccountType() {
   const navigation = useNavigation();

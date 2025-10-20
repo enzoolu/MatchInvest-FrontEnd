@@ -3,6 +3,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import CustomButton from "../../components/CustomButton";
 import { styles } from "./styles";
 import { useState, useRef } from "react";
+import React from "react";
 
 export default function InvestorDetails() {
   const navigation = useNavigation();

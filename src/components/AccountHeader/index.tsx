@@ -3,6 +3,7 @@ import { styles } from "./styles";
 import { AccountHeaderProps } from "./types";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import React from "react";
 
 export const AccountHeader = ({
   name,

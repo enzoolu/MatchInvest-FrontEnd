@@ -13,6 +13,7 @@ import PickInvestor from "../screens/PickInvestor";
 import Profile from "../screens/Profile";
 import EditAccountInvestor from "../screens/EditAccountInvestor";
 import EditAccountAssessor from "../screens/EditAccountAssessor";
+import React from "react";
 
 const Drawer = createDrawerNavigator();
 

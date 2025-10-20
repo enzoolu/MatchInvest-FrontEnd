@@ -6,6 +6,7 @@ import { getToken, getUserId, getUserType } from "../../AsyncStorage";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "./styles";
+import React from "react";
 
 export default function EditAccountInvestor() {
   const navigation = useNavigation();

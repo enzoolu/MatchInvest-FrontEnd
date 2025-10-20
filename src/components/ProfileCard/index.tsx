@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "./styles"; // Certifique-se de que o caminho está correto
 import { ProfileCardProps } from "./types"; // Certifique-se de que o caminho está correto
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React from "react";
 
 export const ProfileCard = ({
   iconName,

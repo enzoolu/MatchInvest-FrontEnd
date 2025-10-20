@@ -4,6 +4,7 @@ import CustomButton from "../../components/CustomButton";
 import { styles } from "./styles";
 import { Feather, AntDesign } from "@expo/vector-icons";
 import { useState, useRef } from "react";
+import React from "react";
 
 export default function AssessorDetails() {
   const navigation = useNavigation();

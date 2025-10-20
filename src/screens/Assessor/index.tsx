@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { getToken, saveUserId, saveUserType } from "../../AsyncStorage";
 import FormAssessor from "../../components/FormAssessor";
+import React from "react";
 
 export default function Assessor() {
   const navigation = useNavigation();

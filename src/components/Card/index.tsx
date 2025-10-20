@@ -2,6 +2,7 @@ import { View, Image, Text } from "react-native";
 import CustomButton from "../CustomButton";
 import { styles } from "./styles";
 import { CardProps } from "./types";
+import React from "react";
 
 export const Card = ({ imgPath, name, description, onClick }: CardProps) => {
   return (

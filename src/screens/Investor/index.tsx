@@ -10,6 +10,7 @@ import { Header } from "../../components/Header";
 // } from "../../AsyncStorage";
 // import axios from "axios";
 import FormInvestor from "../../components/FormInvestor";
+import React from "react";
 
 export default function Investor() {
   const navigation = useNavigation();

@@ -15,6 +15,7 @@ import {
 } from "../../AsyncStorage";
 import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 import axios from "axios";
+import React from "react";
 
 export default function Profile() {
   const navigation = useNavigation();
