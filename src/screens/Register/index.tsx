@@ -55,7 +55,7 @@ export default function Register() {
     //   });
 
     saveUserLogin(user, password);
-    navigation.navigate("AccountType" as never);
+    navigation.navigate("FaceValidation" as never);
   };
 
   return (

@@ -14,6 +14,7 @@ import Profile from "../screens/Profile";
 import EditAccountInvestor from "../screens/EditAccountInvestor";
 import EditAccountAssessor from "../screens/EditAccountAssessor";
 import React from "react";
+import FaceValidationScreen from "../screens/FaceValidation";
 
 const Drawer = createDrawerNavigator();
 
@@ -42,6 +43,7 @@ export function Routes() {
         name="EditAccountassessors"
         component={EditAccountAssessor}
       />
+      <Drawer.Screen name="FaceValidation" component={FaceValidationScreen} />
     </Drawer.Navigator>
   );
 }
