@@ -46,7 +46,8 @@ yarn web
 ## Observações
 
 - Para iniciar os testes do aplicativo, é necessário criar uma conta através da tela de registro.
-- O cadastro salva os dados no AsyncStorage, permitindo que você faça login e acesse as funcionalidades do app
+- O Projeto de back-end deve estar rodando junto com este para o funcionamento completo da sprint
+- Link do projeto: https://github.com/Lucas-Umada/MatchInvestApi
 
 ---
 
