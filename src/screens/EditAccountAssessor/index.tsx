@@ -18,7 +18,6 @@ export default function EditAccountAssessor() {
   const [token, setToken] = useState("");
   const [userId, setUserId] = useState("");
   const [userType, setUserType] = useState("");
-  const [user, setUser] = useState({});
 
   const [showPopup, setShowPopup] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -45,27 +44,25 @@ export default function EditAccountAssessor() {
       return;
     }
 
-    // try {
-    //   await axios.put(
-    //     `http://localhost:8080/api/v1/${userType}/${userId}`,
-    //     {
-    //       certifications: [certification],
-    //       specialties: [specialty],
-    //       bio: bio,
-    //       hourlyRate: hourValue,
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     }
-    //   );
-    //   navigation.goBack();
-    // } catch (error) {
-    //   console.error("Erro ao salvar perfil:", error);
-    // }
-
-    navigation.navigate("Profile" as never);
+    try {
+      await axios.put(
+        `http://localhost:8080/api/v1/${userType}/${userId}`,
+        {
+          certifications: [certification],
+          specialties: [specialty],
+          bio: bio,
+          hourlyRate: hourValue,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      navigation.navigate("Profile" as never);
+    } catch (error) {
+      console.error("Erro ao salvar perfil:", error);
+    }
   };
 
   useEffect(() => {

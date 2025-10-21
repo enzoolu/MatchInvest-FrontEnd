@@ -8,7 +8,7 @@ import React from "react";
 export default function InvestorDetails() {
   const navigation = useNavigation();
   const route = useRoute();
-  const { assessor }: any = route.params; // Aqui recebe o assessor da tela anterior
+  const { assessor }: any = route.params;
 
   const [showPopup, setShowPopup] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;

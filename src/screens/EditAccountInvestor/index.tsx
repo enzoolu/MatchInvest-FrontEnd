@@ -42,25 +42,23 @@ export default function EditAccountInvestor() {
       return;
     }
 
-    // try {
-    //   await axios.put(
-    //     `http://localhost:8080/api/v1/${userType}/${userId}`,
-    //     {
-    //       capitalAvailable: capital,
-    //       riskAppetite: selected,
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     }
-    //   );
-    //   navigation.goBack();
-    // } catch (error) {
-    //   console.error("Erro ao salvar perfil:", error);
-    // }
-
-    navigation.navigate("Profile" as never);
+    try {
+      await axios.put(
+        `http://localhost:8080/api/v1/${userType}/${userId}`,
+        {
+          capitalAvailable: capital,
+          riskAppetite: selected,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      navigation.navigate("Profile" as never);
+    } catch (error) {
+      console.error("Erro ao salvar perfil:", error);
+    }
   };
 
   useEffect(() => {

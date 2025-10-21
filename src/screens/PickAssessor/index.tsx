@@ -19,31 +19,31 @@ export default function PickAssessor() {
 
   const endpoint = "http://localhost:8080/api/v1/advisors?page=0&size=5";
 
-  // useEffect(() => {
-  //   const fetchAssessors = async () => {
-  //     const token = await getToken();
+  useEffect(() => {
+    const fetchAssessors = async () => {
+      const token = await getToken();
 
-  //     if (!token) {
-  //       Alert.alert("Erro", "Token não encontrado");
-  //       return;
-  //     }
+      if (!token) {
+        Alert.alert("Erro", "Token não encontrado");
+        return;
+      }
 
-  //     try {
-  //       const response = await axios.get(endpoint, {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       });
+      try {
+        const response = await axios.get(endpoint, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-  //       setAssessors(response.data.content);
-  //     } catch (error) {
-  //       console.error("Erro ao buscar assessores:", error);
-  //       Alert.alert("Erro", "Não foi possível carregar os assessores.");
-  //     }
-  //   };
+        setAssessors(response.data.content);
+      } catch (error) {
+        console.error("Erro ao buscar assessores:", error);
+        Alert.alert("Erro", "Não foi possível carregar os assessores.");
+      }
+    };
 
-  //   fetchAssessors();
-  // }, []);
+    fetchAssessors();
+  }, []);
 
   return (
     <View style={styles.backgroundView}>

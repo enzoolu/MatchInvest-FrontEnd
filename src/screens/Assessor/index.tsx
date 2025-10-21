@@ -15,32 +15,32 @@ export default function Assessor() {
   const [specialty, setSpecialty] = useState<string | null>(null);
   const [hourValue, setHourValue] = useState<string>("");
   const [bio, setBio] = useState<string>("");
-  // const [token, setToken] = useState("");
+  const [token, setToken] = useState("");
 
   const [showPopup, setShowPopup] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  // const postProfile = async () => {
-  //   await axios
-  //     .post(
-  //       "http://localhost:8080/api/v1/advisors",
-  //       {
-  //         certifications: [certification],
-  //         specialties: [specialty],
-  //         bio,
-  //         hourlyRate: hourValue,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       saveUserId(response.data.id);
-  //       saveUserType("advisors");
-  //     });
-  // };
+  const postProfile = async () => {
+    await axios
+      .post(
+        "http://localhost:8080/api/v1/advisors",
+        {
+          certifications: [certification],
+          specialties: [specialty],
+          bio,
+          hourlyRate: hourValue,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        saveUserId(response.data.id);
+        saveUserType("advisors");
+      });
+  };
 
   const handleButtonClick = () => {
     if (!certification || !specialty || !hourValue || !bio) {
@@ -64,26 +64,24 @@ export default function Assessor() {
       return;
     }
 
-    navigation.navigate("PickInvestor" as never);
-
-    // try {
-    //   postProfile().then(() => {
-    //     navigation.navigate("PickInvestor" as never);
-    //   });
-    // } catch (error) {
-    //   console.error("Erro ao criar perfil:", error);
-    // }
+    try {
+      postProfile().then(() => {
+        navigation.navigate("PickInvestor" as never);
+      });
+    } catch (error) {
+      console.error("Erro ao criar perfil:", error);
+    }
   };
 
-  // useEffect(() => {
-  //   getToken().then((res) => {
-  //     if (res) {
-  //       setToken(res);
-  //     } else {
-  //       console.error("Token not found");
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    getToken().then((res) => {
+      if (res) {
+        setToken(res);
+      } else {
+        console.error("Token not found");
+      }
+    });
+  }, []);
 
   return (
     <ScrollView style={styles.backgroundView}>

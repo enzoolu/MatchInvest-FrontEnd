@@ -27,7 +27,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!name || !user || !email || !password || !confirmPassword) {
       Alert.alert("Erro", "Preencha todos os campos");
       return;
@@ -38,24 +38,21 @@ export default function Register() {
       return;
     }
 
-    // await axios
-    //   .post(`${endpointBase}/auth/register`, {
-    //     username: user,
-    //     password: password,
-    //     confirmPassword: confirmPassword,
-    //     fullName: name,
-    //     email: email,
-    //   })
-    //   .then((res) => {
-    //     console.log({ res });
-    //     if (res.status === 201) {
-    //       Alert.alert("Sucesso", "Registrado com sucesso!");
-    //       navigation.navigate("Login" as never);
-    //     }
-    //   });
-
-    saveUserLogin(user, password);
-    navigation.navigate("FaceValidation" as never);
+    await axios
+      .post(`${endpointBase}/auth/register`, {
+        username: user,
+        password: password,
+        confirmPassword: confirmPassword,
+        fullName: name,
+        email: email,
+      })
+      .then((res) => {
+        console.log({ res });
+        if (res.status === 201) {
+          Alert.alert("Sucesso", "Registrado com sucesso!");
+          navigation.navigate("Login" as never);
+        }
+      });
   };
 
   return (

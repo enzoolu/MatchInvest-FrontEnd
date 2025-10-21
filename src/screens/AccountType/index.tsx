@@ -11,30 +11,29 @@ export default function AccountType() {
   const navigation = useNavigation();
 
   const handleSelect = async (profile: "INVESTOR" | "ADVISOR") => {
-    // try {
-    //   const token = await getToken();
+    try {
+      const token = await getToken();
 
-    //   if (!token) {
-    //     Alert.alert("Erro", "Token não encontrado");
-    //     return;
-    //   }
+      if (!token) {
+        Alert.alert("Erro", "Token não encontrado");
+        return;
+      }
 
-    //   await axios.post(
-    //     "http://localhost:8080/api/v1/auth/choose-role",
-    //     { role: profile },
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     }
-    //   );
+      await axios.post(
+        "http://localhost:8080/api/v1/auth/choose-role",
+        { role: profile },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-    //   console.log("Role selecionado com sucesso:", profile);
-
-    // } catch (error) {
-    //   console.error("Erro ao escolher o perfil:", error);
-    //   Alert.alert("Erro", "Não foi possível definir o perfil.");
-    // }
+      console.log("Role selecionado com sucesso:", profile);
+    } catch (error) {
+      console.error("Erro ao escolher o perfil:", error);
+      Alert.alert("Erro", "Não foi possível definir o perfil.");
+    }
 
     if (profile === "INVESTOR") {
       saveUserType("investors");

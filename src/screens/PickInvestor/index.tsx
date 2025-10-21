@@ -28,34 +28,34 @@ export default function PickInvestor() {
     return traduz[risk as keyof typeof traduz] ?? risk.toLowerCase();
   };
 
-  // useEffect(() => {
-  //   const fetchInvestors = async () => {
-  //     const token = await getToken();
+  useEffect(() => {
+    const fetchInvestors = async () => {
+      const token = await getToken();
 
-  //     if (!token) {
-  //       Alert.alert("Erro", "Token não encontrado");
-  //       return;
-  //     }
+      if (!token) {
+        Alert.alert("Erro", "Token não encontrado");
+        return;
+      }
 
-  //     try {
-  //       const response = await axios.get(endpoint, {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       });
+      try {
+        const response = await axios.get(endpoint, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-  //       setInvestors(response.data);
-  //     } catch (error) {
-  //       console.error("Erro ao buscar investidores:", error);
-  //       Alert.alert(
-  //         "Erro",
-  //         "Não foi possível carregar os investidores. Verifique o backend."
-  //       );
-  //     }
-  //   };
+        setInvestors(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar investidores:", error);
+        Alert.alert(
+          "Erro",
+          "Não foi possível carregar os investidores. Verifique o backend."
+        );
+      }
+    };
 
-  //   fetchInvestors();
-  // }, []);
+    fetchInvestors();
+  }, []);
 
   return (
     <View style={styles.backgroundView}>
