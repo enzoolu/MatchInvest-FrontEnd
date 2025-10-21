@@ -16,7 +16,7 @@ export default function Welcome({ navigation }: any) {
   return (
     <Container>
       <Header>
-        <SubTitle>seja bem vindo ao</SubTitle>
+        <SubTitle>Seja bem-vindo ao</SubTitle>
         <Title>MatchInvest</Title>
         <SubTitle2>
           Registre-se para começar sua jornada de investimentos!
